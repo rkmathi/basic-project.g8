@@ -1,3 +1,6 @@
+import de.johoop.jacoco4sbt._
+import JacocoPlugin._
+
 name := "$name$"
 
 organization := "$organization$"
@@ -15,3 +18,7 @@ libraryDependencies ++= Seq(
 )
 
 initialCommands := "import $organization$.$name$._"
+
+seq(jacoco.settings : _*)
+
+jacoco.reportFormats in jacoco.Config += XMLReport("utf-8")
