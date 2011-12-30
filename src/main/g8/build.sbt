@@ -6,14 +6,12 @@ version := "$version$"
 
 scalaVersion := "2.9.1"
 
-crossScalaVersions := Seq("2.9.0-1")
-
-resolvers += "Scala Tools Snapshots" at "http://scala-tools.org/repo-snapshots/"
+crossScalaVersions := Seq("2.9.1")
 
 libraryDependencies ++= Seq(
+  "org.scalaz" %% "scalaz-core" % "6.0.3",
   "org.scalatest" % "scalatest" % "[1.2,)" % "test",
-  "junit" % "junit" % "[4.8.2,)" % "test",
-  "org.scalaz" % "scalaz-core" % "6.0.3"
+  "junit" % "junit" % "[4.8.2,)" % "test"
 )
 
 initialCommands := "import $organization$.$name$._"
