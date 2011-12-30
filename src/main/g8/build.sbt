@@ -1,5 +1,6 @@
 import de.johoop.jacoco4sbt._
 import JacocoPlugin._
+import eu.henkelmann.sbt._
 
 name := "$name$"
 
@@ -22,3 +23,5 @@ initialCommands := "import $organization$.$name$._"
 seq(jacoco.settings : _*)
 
 jacoco.reportFormats in jacoco.Config += XMLReport("utf-8")
+
+testListeners <+= (crossTarget) map { ct => new JUnitXmlTestsListener(ct.toString) }
