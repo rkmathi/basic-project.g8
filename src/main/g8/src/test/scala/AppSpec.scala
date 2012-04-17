@@ -1,4 +1,5 @@
 import org.specs2._
+
 class AppSpec extends Specification { def is =
 
     "文字列'Hello world'に関するテスト"                                         ^
