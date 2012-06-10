@@ -11,6 +11,8 @@ libraryDependencies := Seq(
   ,"com.github.scala-incubator.io" %% "scala-io-core" % "0.3.0"
   ,"com.github.scala-incubator.io" %% "scala-io-file" % "0.3.0"
   ,"org.scala-tools.time" %% "time" % "0.5"
+  ,"joda-time" % "joda-time" % "2.1"
+  ,"org.joda" % "joda-convert" % "1.2"
   ,"org.specs2" %% "specs2" % "1.9" % "test"
   ,"org.mockito" % "mockito-all" % "1.9.0" % "test"
   ,"junit" % "junit" % "4.10" % "test"
