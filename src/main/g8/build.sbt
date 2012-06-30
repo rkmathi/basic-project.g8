@@ -29,6 +29,6 @@ import scalaz._
 import Scalaz._
 import scalax.io._
 import scalax.file._
-import Path._
+import ImplicitConversions._
 import org.scala_tools.time.Imports._
 """
