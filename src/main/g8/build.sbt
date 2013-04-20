@@ -8,7 +8,7 @@ version := "$version$"
 
 scalaVersion := "2.10.1"
 
-libraryDependencies := Seq(
+libraryDependencies ++= Seq(
    "org.scalaz" %% "scalaz-core" % "7.0.0-RC2"
   ,"com.typesafe.akka" %% "akka-actor" % "2.1.2"
   ,"com.github.scala-incubator.io" %% "scala-io-core" % "0.4.2"
@@ -27,7 +27,7 @@ libraryDependencies := Seq(
   ,"org.pegdown" % "pegdown" % "1.2.1" % "test"
 )
 
-scalacOptions <<= scalaVersion.map { sv =>
+scalacOptions <++= scalaVersion.map { sv =>
   if (sv.startsWith("2.10")) {
     Seq(
       "-deprecation",
