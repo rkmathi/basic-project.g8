@@ -101,7 +101,7 @@ pomExtra := (
 
 scalacOptions in (Compile, doc) <++= baseDirectory.map {
   bd => Seq("-sourcepath", bd.getAbsolutePath,
-            "-doc-source-url", "https://github.com/nisshiee/$name$/blob/master/core€{FILE_PATH}.scala")
+            "-doc-source-url", "https://github.com/nisshiee/$name$/blob/master€{FILE_PATH}.scala")
 }
 
 
@@ -109,7 +109,7 @@ scalacOptions in (Compile, doc) <++= baseDirectory.map {
 
 seq(assemblySettings: _*)
 
-jarName in assembly <<= (name, version) { (name, version) => name + "-" + version + ".jar" }
+jarName in assembly <<= (name, version) map { (name, version) => name + "-" + version + ".jar" }
 
 // test in assembly := {}
 
