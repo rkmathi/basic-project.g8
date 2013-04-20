@@ -19,6 +19,9 @@ syntax: glob
 .idea
 *.iml
 
+# ensime
+.ensime*
+
 # sbt building
 target/
 project/boot/

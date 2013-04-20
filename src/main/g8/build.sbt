@@ -6,21 +6,44 @@ organization := "$organization$"
 
 version := "$version$"
 
-scalaVersion := "2.9.2"
+scalaVersion := "2.10.1"
 
 libraryDependencies := Seq(
-   "org.scalaz" %% "scalaz-core" % "7.0.0-M4"
-  ,"com.typesafe.akka" % "akka-actor" % "2.0.2"
-  ,"com.github.scala-incubator.io" %% "scala-io-core" % "0.4.1"
-  ,"com.github.scala-incubator.io" %% "scala-io-file" % "0.4.1"
-  ,"org.scala-tools.time" % "time_2.9.1" % "0.5"
-  ,"joda-time" % "joda-time" % "2.1"
-  ,"org.joda" % "joda-convert" % "1.2"
-  ,"org.specs2" %% "specs2" % "1.12.3" % "test"
-  ,"org.mockito" % "mockito-all" % "1.9.0" % "test"
-  ,"junit" % "junit" % "4.10" % "test"
-  ,"org.pegdown" % "pegdown" % "1.1.0" % "test"
+   "org.scalaz" %% "scalaz-core" % "7.0.0-RC2"
+  ,"com.typesafe.akka" %% "akka-actor" % "2.1.2"
+  ,"com.github.scala-incubator.io" %% "scala-io-core" % "0.4.2"
+  ,"com.github.scala-incubator.io" %% "scala-io-file" % "0.4.2"
+  ,"com.github.nscala-time" %% "nscala-time" % "0.4.0"
+  ,"com.github.scopt" %% "scopt" % "2.1.0"
+  ,"com.github.tototoshi" %% "scala-csv" % "0.7.0"
+  ,"org.json4s" %% "json4s-jackson" % "3.2.4"
+  ,"net.databinder.dispatch" %% "dispatch-core" % "0.10.0"
+  //typesafe config includes in akka dependencies
+  //,"com.typesafe" % "config" % "1.0.0"
+  ,"org.specs2" %% "specs2" % "1.14" % "test"
+  ,"org.typelevel" %% "scalaz-specs2" % "0.1.3"
+  ,"org.mockito" % "mockito-all" % "1.9.5" % "test"
+  ,"junit" % "junit" % "4.11" % "test"
+  ,"org.pegdown" % "pegdown" % "1.2.1" % "test"
 )
+
+scalacOptions <<= scalaVersion.map { sv =>
+  if (sv.startsWith("2.10")) {
+    Seq(
+      "-deprecation",
+      "-language:dynamics",
+      "-language:postfixOps",
+      "-language:reflectiveCalls",
+      "-language:implicitConversions",
+      "-language:higherKinds",
+      "-language:existentials",
+      "-language:reflectiveCalls",
+      "-language:experimental.macros"
+    )
+  } else {
+    Seq("-deprecation")
+  }
+}
 
 testOptions in (Test, test) += Tests.Argument("console", "html", "junitxml")
 
@@ -30,7 +53,7 @@ import Scalaz._
 import scalax.io._
 import scalax.file._
 import ImplicitConversions._
-import org.scala_tools.time.Imports._
+import com.github.nscala_time.time.Imports._
 """
 
 
@@ -74,9 +97,9 @@ pomExtra := (
 
 // ========== for scaladoc ==========
 
-// scaladocOptions in (Compile, doc) <++= (baseDirectory in LocalProject("core")).map {
+// scalacOptions in (Compile, doc) <++= (baseDirectory in LocalProject("core")).map {
 
-scaladocOptions in (Compile, doc) <++= baseDirectory.map {
+scalacOptions in (Compile, doc) <++= baseDirectory.map {
   bd => Seq("-sourcepath", bd.getAbsolutePath,
             "-doc-source-url", "https://github.com/nisshiee/$name$/blob/master/core€{FILE_PATH}.scala")
 }
