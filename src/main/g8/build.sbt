@@ -1,28 +1,42 @@
 import AssemblyKeys._
 
+net.virtualvoid.sbt.graph.Plugin.graphSettings
+
 name := "$name$"
 
 organization := "$organization$"
 
 version := "$version$"
 
-scalaVersion := "2.10.1"
+scalaVersion := "2.10.3"
 
 libraryDependencies ++= Seq(
-   "org.scalaz" %% "scalaz-core" % "7.0.0-RC2"
-  ,"com.typesafe.akka" %% "akka-actor" % "2.1.2"
+  // ---------- basic ----------
+   "org.scalaz" %% "scalaz-core" % "7.0.4"
+  ,"org.typelevel" %% "scalaz-contrib-210" % "0.1.5"
+  ,"com.typesafe.akka" %% "akka-actor" % "2.2.1"
+  ,"com.github.nscala-time" %% "nscala-time" % "0.6.0"
+  // ---------- for FILE IO ----------
   ,"com.github.scala-incubator.io" %% "scala-io-core" % "0.4.2"
   ,"com.github.scala-incubator.io" %% "scala-io-file" % "0.4.2"
-  ,"com.github.nscala-time" %% "nscala-time" % "0.4.0"
-  ,"com.github.scopt" %% "scopt" % "2.1.0"
-  ,"com.github.tototoshi" %% "scala-csv" % "0.7.0"
-  ,"org.json4s" %% "json4s-jackson" % "3.2.4"
-  ,"net.databinder.dispatch" %% "dispatch-core" % "0.10.0"
-  //typesafe config includes in akka dependencies
-  //,"com.typesafe" % "config" % "1.0.0"
-  ,"org.specs2" %% "specs2" % "1.14" % "test"
-  ,"org.typelevel" %% "scalaz-specs2" % "0.1.3" % "test"
-  ,"org.mockito" % "mockito-all" % "1.9.5" % "test"
+  ,"com.github.tototoshi" %% "scala-csv" % "0.8.0"
+  // ---------- for WEB ----------
+  ,"net.databinder.dispatch" %% "dispatch-core" % "0.11.0"
+  ,"org.json4s" %% "json4s-jackson" % "3.2.5"
+  // ---------- for CLI ----------
+  ,"com.typesafe" % "config" % "1.0.2"
+  ,"com.github.kxbmap" %% "configs" % "0.2.0"
+  ,"com.github.scopt" %% "scopt" % "3.1.0"
+  // ---------- for DB ----------
+  ,"com.github.seratch" %% "scalikejdbc" % "1.6.10"
+  ,"com.github.seratch" %% "scalikejdbc-interpolation" % "1.6.10"
+  ,"mysql" % "mysql-connector-java" % "5.1.26"
+  // ---------- for Logging ----------
+  ,"org.slf4j" % "slf4j-api" % "1.7.5"
+  ,"org.slf4j" % "slf4j-simple" % "1.7.5"
+  // ---------- test scope ----------
+  ,"org.specs2" %% "specs2" % "2.2.3" % "test"
+  ,"org.typelevel" %% "scalaz-specs2" % "0.1.5" % "test"
   ,"junit" % "junit" % "4.11" % "test"
   ,"org.pegdown" % "pegdown" % "1.2.1" % "test"
 )
@@ -49,13 +63,14 @@ scalacOptions <++= scalaVersion.map { sv =>
 testOptions in (Test, test) += Tests.Argument("console", "html", "junitxml")
 
 initialCommands := """
-import scalaz._
-import Scalaz._
+import scalaz._, Scalaz._
 import scalax.io._
 import scalax.file._
-import ImplicitConversions._
+import scalax.file.ImplicitConversions._
 import com.github.nscala_time.time.Imports._
 """
+
+cleanupCommands := ""
 
 
 // ========== for sonatype oss publish ==========
@@ -123,3 +138,4 @@ mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
     case x => old(x)
   }
 }
+
