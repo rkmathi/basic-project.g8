@@ -30,6 +30,7 @@ libraryDependencies ++= Seq(
   // ---------- for DB ----------
   ,"com.github.seratch" %% "scalikejdbc" % "1.6.10"
   ,"com.github.seratch" %% "scalikejdbc-interpolation" % "1.6.10"
+  ,"com.github.seratch" %% "scalikejdbc-config" % "1.6.10"
   ,"mysql" % "mysql-connector-java" % "5.1.26"
   // ---------- for Logging ----------
   ,"org.slf4j" % "slf4j-api" % "1.7.5"
