@@ -39,7 +39,7 @@ libraryDependencies ++= Seq(
   ,"org.specs2" %% "specs2" % "2.2.3" % "test"
   ,"org.typelevel" %% "scalaz-specs2" % "0.1.5" % "test"
   ,"junit" % "junit" % "4.11" % "test"
-  ,"org.pegdown" % "pegdown" % "1.2.1" % "test"
+  ,"org.pegdown" % "pegdown" % "1.4.1" % "test"
 )
 
 scalacOptions <++= scalaVersion.map { sv =>
