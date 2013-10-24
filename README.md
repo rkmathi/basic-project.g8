@@ -1,4 +1,5 @@
-## This is a [giter8](https://github.com/n8han/giter8) template for removing
+## This is a [giter8](https://github.com/n8han/giter8) template.
+
 the boilerplate in setting up a new scala project:
 
 * `main` and `test` source directories and stubs
