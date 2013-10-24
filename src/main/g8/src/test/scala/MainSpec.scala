@@ -1,7 +1,6 @@
 import org.specs2._
 
 class AppSpec extends Specification { def is =
-
     "test about String 'Hello world'"                                           ^
                                                                                 p^
     "'Hello world'"                                                             ^
