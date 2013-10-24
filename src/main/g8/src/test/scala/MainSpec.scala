@@ -1,7 +1,7 @@
 // https://gist.github.com/rkmathi/7130768
 import org.specs2._
 
-class AppSpec extends Specification {
+class MainSpec extends Specification {
   def is =
     "This is a specification to check the 'Hello world' string"        ^
                                                                        p^
