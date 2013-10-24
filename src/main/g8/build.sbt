@@ -2,11 +2,11 @@ import AssemblyKeys._
 
 net.virtualvoid.sbt.graph.Plugin.graphSettings
 
-name := "hoge"
+name := "$name$"
 
-organization := "net.rkmathi"
+organization := "$organization$"
 
-version := "0.0.1"
+version := "$version$"
 
 scalaVersion := "2.10.3"
 
@@ -61,7 +61,7 @@ scalacOptions <++= scalaVersion.map { sv =>
   }
 }
 
-testOptions in (Test, test) += Tests.Argument("console", "html", "junitxml")
+testOptions in (Test, test) += Tests.Argument("console")
 
 //initialCommands := """
 //import scalaz._, Scalaz._
@@ -80,8 +80,6 @@ seq(assemblySettings: _*)
 
 jarName in assembly <<= (name, version) map { (name, version) => name + "-" + version + ".jar" }
 
-//test in assembly := {}
-
 mainClass in assembly := Some("Main")
 
 mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
@@ -90,3 +88,4 @@ mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
     case x => old(x)
   }
 }
+
