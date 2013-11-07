@@ -71,7 +71,8 @@ testOptions in (Test, test) += Tests.Argument("console")
 //import com.github.nscala_time.time.Imports._
 //"""
 
-cleanupCommands := ""
+//cleanupCommands := """
+//"""
 
 
 // ========== for sbt-assembly ==========
