@@ -1,7 +1,5 @@
 import AssemblyKeys._
 
-net.virtualvoid.sbt.graph.Plugin.graphSettings
-
 name := "$name$"
 
 organization := "$organization$"
