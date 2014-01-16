@@ -5,5 +5,6 @@
 ### sbt dependency
 
 ```
-libraryDependencies += "com.example" %% "$name$" % "$version$"
+libraryDependencies += "$organization$" %% "$name$" % "$version$"
 ```
+
