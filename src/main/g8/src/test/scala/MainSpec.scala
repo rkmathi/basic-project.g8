@@ -15,3 +15,4 @@ class MainSpec extends Specification {
     def e2 = "Hello world" must startWith("Hello")
     def e3 = "Hello world" must endWith("world")
 }
+
