@@ -5,5 +5,5 @@
 ### sbt dependency
 
 ```
-libraryDependencies += "net.rkmathi" %% "$name$" % "$version$"
+libraryDependencies += "com.example" %% "$name$" % "$version$"
 ```
