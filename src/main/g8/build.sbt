@@ -2,19 +2,14 @@ import AssemblyKeys._
 
 name := "$name$"
 
-organization := "$organization$"
-
-version := "$version$"
-
-scalaVersion := "2.10.3"
+lazy val buildSettings = Seq(
+  organization := "$organization$",
+  version := "$version$",
+  scalaVersion := "2.11.0",
+)
 
 libraryDependencies ++= Seq(
-  "org.specs2" %% "specs2" % "2.3.7" % "test"
-//  ,"org.scalaz" %% "scalaz-core" % "7.0.5"
-//  ,"org.typelevel" %% "scalaz-contrib-210" % "0.1.5"
-//  ,"org.typelevel" %% "scalaz-specs2" % "0.1.5" % "test"
-  ,"com.typesafe" % "config" % "1.2.0"
-//  ,"com.typesafe.akka" %% "akka-actor" % "2.2.3"
+  "org.specs2" %% "specs2" % "2.8.2" % "test"
 )
 
 scalacOptions := Seq(
@@ -23,18 +18,15 @@ scalacOptions := Seq(
 
 testOptions in (Test, test) += Tests.Argument("console")
 
-seq(assemblySettings: _*)
+test in assembly := {}
+
+val app = (project in file("app")).
+    settings(buildSettings: _*).
+    settings(assemblySettings: _*)
 
 jarName in assembly <<= (name, version) map {
   (name, version) => name + "-" + version + ".jar"
 }
 
-mainClass in assembly := Some("Main")
-
-mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
-  {
-    case "application.conf" => MergeStrategy.concat
-    case x => old(x)
-  }
-}
+mainClass in assembly := Some("$organization$.Main")
 
