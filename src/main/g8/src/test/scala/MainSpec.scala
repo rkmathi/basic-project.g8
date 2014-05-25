@@ -1,8 +1,9 @@
 import org.scalatest.FlatSpec
 
 class MainSpec extends FlatSpec {
-  "An empty Set" shoud "have size 0" in {
-    assert(Set.empty.size == 0)
+  "\"Hello, world!\"" should "have size 13" in {
+    val str = "Hello, world!"
+    assert(str.size == 13)
   }
 }
 
